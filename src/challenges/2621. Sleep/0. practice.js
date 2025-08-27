@@ -1,4 +1,14 @@
 //title: 2621. Sleep
+//Tags:
+
+//Get away:
+// Think of it like calling a coworker to get info:
+
+// You: “Hey, what’s Alice’s full name?”
+// Coworker (a.k.a. formatName): “It’s Alice Smith.”
+// You pass that answer directly to your boss without doing anything else.
+
+// That’s returning a function call from another function.
 
 // Given a positive integer millis, write an asynchronous function that sleeps for millis milliseconds. It can resolve any value.
 
@@ -97,3 +107,17 @@
 // setTimeout is a classic way to create delays but doesn't work natively with await, so you need to wrap it in a Promise.
 
 // Practice chaining .then() and using async/await to get comfortable with both styles.
+
+let count = 5;
+
+function countdown() {
+  if (count > 0) {
+    console.log(count);
+    count--;
+    setTimeout(countdown, 1000);
+  } else {
+    console.log("times up.");
+  }
+}
+
+countdown();

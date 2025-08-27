@@ -54,3 +54,63 @@ function wait(ms) {
 //❌ Overkill if the logic is just one setTimeout
 
 //think about a start & stop time.
+
+function stopWatch(){
+
+  setTimeout()
+}
+
+
+
+let count = 5;
+
+function countdown() {
+  if (count > 0) {
+    console.log(count);
+    count--;
+    setTimeout(countdown, 1000);
+  } else {
+    console.log("times up.");
+  }
+}
+
+countdown();
+
+
+//Key steps of thought process when writing code
+
+/let startTime;
+let elapsed = 0;
+let running = false;
+let timerId;
+
+function start() {
+  if (!running) {
+    running = true;
+    startTime = Date.now() - elapsed;
+    tick();
+  }
+}
+
+function stop() {
+  running = false;
+  clearTimeout(timerId);
+}
+
+function reset() {
+  stop();
+  elapsed = 0;
+  console.log("Reset: 0s");
+}
+
+function tick() {
+  if (running) {
+    elapsed = Date.now() - startTime;
+    console.log(`Elapsed: ${(elapsed / 1000).toFixed(2)}s`);
+    timerId = setTimeout(tick, 1000); // update every 1s
+  }
+}
+
+// Example usage
+start();
+setTimeout(stop, 5000);  // auto-stop after 5s
