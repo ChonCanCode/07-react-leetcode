@@ -8,7 +8,7 @@
 
 // Log the result after it resolves.
 
-
+//My attempt
 function fetching Async(){
     const fectch = convert.json()
     return await(fetch)
@@ -16,6 +16,7 @@ function fetching Async(){
 }
 
 fetching()
+
 
 
 function sayHello() {
@@ -32,3 +33,5 @@ async function fetching() {
 }
 
 fetching(); // Call the async function
+
+//Correct me if I am wrong. The sayHello fucntion is a standard promise(resolve,reject) wait to be triggered, the fectching is a async function which enable await so it will wait for the sayHello function to be completed before loging the result. But in what situration I will use this combo?
