@@ -79,7 +79,7 @@ countdown();
 
 //Key steps of thought process when writing code
 
-/let startTime;
+let startTime;
 let elapsed = 0;
 let running = false;
 let timerId;
@@ -114,3 +114,5 @@ function tick() {
 // Example usage
 start();
 setTimeout(stop, 5000);  // auto-stop after 5s
+
+//correct me if i am wrong. To first understand the code I have scan the name of the variable and functions first as mostly likley it will explain itself brifelt. Each function handing one purpose. Start function takign the first variable if running is a not true which is false it will take it make it true and start the timer by Date.now() the inner clock of the PC
