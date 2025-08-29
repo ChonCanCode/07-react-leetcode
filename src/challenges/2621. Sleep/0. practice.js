@@ -108,16 +108,37 @@
 
 // Practice chaining .then() and using async/await to get comfortable with both styles.
 
-let count = 5;
+let startTime;
+let elapsed = 0;
+let running = false;
+let timerId;
 
-function countdown() {
-  if (count > 0) {
-    console.log(count);
-    count--;
-    setTimeout(countdown, 1000);
-  } else {
-    console.log("times up.");
+function start() {
+  if (!running) {
+    running = true;
+    startTime = Date.now() - elapsed;
+    tick();
   }
 }
 
-countdown();
+function stop() {
+  running = false;
+  clearTimeout(timerId);
+}
+
+function reset() {
+  stop();
+  elapsed = 0;
+  console.log("Reset: 0s");
+}
+
+function tick() {
+  if (running) {
+    elapsed = Date.now() - startTime;
+    console.log(`Elapsed: ${(elapsed / 1000).toFixed(2)}s`);
+    timerId = setTimeout(tick, 1000);
+  }
+}
+
+start();
+setTimeout(stop, 5000);
