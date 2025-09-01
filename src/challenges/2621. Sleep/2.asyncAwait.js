@@ -9,27 +9,25 @@
 // Log the result after it resolves.
 
 //My attempt
-function fetching Async(){
-    const fectch = convert.json()
-    return await(fetch)
+// function fetching Async(){
+//     const fectch = convert.json()
+//     return await(fetch)
 
-}
+// }
 
-fetching()
-
-
+// fetching()
 
 function sayHello() {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve("Hello!");
-        }, 1000);
-    });
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("Hello!");
+    }, 1000);
+  });
 }
 
 async function fetching() {
-    const result = await sayHello();  // Wait for the promise to resolve
-    console.log(result);              // Log the resolved value
+  const result = await sayHello(); // Wait for the promise to resolve
+  console.log(result); // Log the resolved value
 }
 
 fetching(); // Call the async function
