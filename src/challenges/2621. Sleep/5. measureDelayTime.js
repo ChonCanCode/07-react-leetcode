@@ -10,21 +10,60 @@
 
 //    Calculate and log the elapsed time.
 
-// my attempt, stuck on fitting the Date.now() after the fucntion is finisihed. Then work on calculating hte the ime by.
+// my attempt, 03/09/2025
+// let isSwitchON = false;
+// let stopWatch;
+// let elapsed = 0;
 
-let isSwitchON = false;
-let stopWatch;
+// async function fun01(ms) {
+//   isSwitchON = true;
+//   stopWatchStart = Date.now(fetching);
+//   stopWatchStop = Date.now(elapsed);
+//   elapsed = stopWatchStop - stopWatchStart;
+//   let fetching = new Promise((resolve) => {
+//     setTimeout(resolve(stopWatchStop), ms);
+//   });
+//   return await console.log(elapsed);
+// }
 
-async function fun01() {
-  isSwitchON = true;
-  stopWatch = Date.now(fetching);
-  let fetching = new Promise((resolve) => {
-    resolve("Cool!");
-  });
-  return await fetching;
+// fun01(1000);
+
+//Correction, 03/09/2025, fetching issue? Data.now() unable to take any arguments, so I need to find a way to start Data.now and activate the function.
+// let elapsed;
+// let stopWatchStart;
+// let stopWatchStop;
+
+// async function fun01(ms) {
+//   stopWatchStart = Date.now();
+//   stopWatchStop = Date.now();
+//   elapsed = stopWatchStop - stopWatchStart;
+
+await new Promise((resolve) => setTimeout(() => (resolve(stopWatchStop), ms)));
+await new Promise((resolve) => setTimeout(() => resolve(stopWatchStop), ms));
+
+//   return console.log("Time passed:", elapsed);
+// }
+
+// fun01(10000);
+
+//finaly answer:
+let elapsed;
+let stopWatchStart;
+let stopWatchStop;
+
+async function fun01(ms) {
+  stopWatchStart = Date.now();
+  await new Promise((resolve) => setTimeout(resolve, ms));
+  stopWatchStop = Date.now();
+  elapsed = stopWatchStop - stopWatchStart;
+  return console.log("Time passed:", elapsed, "ms");
 }
 
-function fun02() {
-  stopWatch = Date.now(test01);
-  const stop = Date.now(test01);
-}
+fun01(5050);
+
+//reflection
+//1. As it is within the function it will carry out top down approach the first line will be actioned so the start and stop timer can be used this way.
+//2. setTimeout(..) sytnax
+//my code:   await new Promise((resolve) => setTimeout(() => (resolve(stopWatchStop), ms)));
+//Correction: await new Promise((resolve) => setTimeout(() => resolve(stopWatchStop), ms));
+//my code is wraping both resovle,ms argument two gather which ended up passing as one single argument where the latter resolve, ms are separated.
