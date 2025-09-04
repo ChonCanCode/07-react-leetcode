@@ -19,21 +19,48 @@
 //    Practice chaining .then() and using async/await to get comfortable with both styles.
 
 async function sleep(millis) {
-  let testing = "testing";
-  await new Promise((resolve) => setTimeout(() => resolve(testing), millis));
-  console.log(testing);
-  return testing;
+  let answer = "success";
+  return await new Promise((resolve) =>
+    setTimeout(() => resolve(answer), millis)
+  );
 }
 
-sleep(1000);
+// console.log(sleep(1000));
+
+//correction:
+
+sleep(1000).then(console.log);
+
+//Lesson learned console.log wont wait it will print out promise which will defeat the purpose of function.
 
 //.then() examples:
-const promise1 = new Promise((resolve, reject) => {
-  resolve("Success!");
-  reject("Failure");
+// const promise1 = new Promise((resolve, reject) => {
+//   resolve("Success!");
+//   reject("Failure");
+// });
+
+// promise1.then((value) => {
+//   console.log(value);
+//   // Expected output: "Success!"
+// });
+
+// fuynct;
+
+let myPromise = new Promise(function (myResolve, myReject) {
+  let success = true; // try changing this to false!
+
+  if (success) {
+    myResolve("✅ The promise was resolved!");
+  } else {
+    myReject("❌ The promise was rejected!");
+  }
 });
 
-promise1.then((value) => {
-  console.log(value);
-  // Expected output: "Success!"
-});
+myPromise.then(
+  function (value) {
+    console.log("Resolved:", value);
+  },
+  function (error) {
+    console.log("Rejected:", error);
+  }
+);
