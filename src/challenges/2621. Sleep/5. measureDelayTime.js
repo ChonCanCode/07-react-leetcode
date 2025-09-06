@@ -38,8 +38,8 @@
 //   stopWatchStop = Date.now();
 //   elapsed = stopWatchStop - stopWatchStart;
 
-await new Promise((resolve) => setTimeout(() => (resolve(stopWatchStop), ms)));
-await new Promise((resolve) => setTimeout(() => resolve(stopWatchStop), ms));
+// await new Promise((resolve) => setTimeout(() => (resolve(stopWatchStop), ms)));
+// await new Promise((resolve) => setTimeout(() => resolve(stopWatchStop), ms));
 
 //   return console.log("Time passed:", elapsed);
 // }
@@ -56,10 +56,10 @@ async function fun01(ms) {
   await new Promise((resolve) => setTimeout(resolve, ms));
   stopWatchStop = Date.now();
   elapsed = stopWatchStop - stopWatchStart;
-  return console.log("Time passed:", elapsed, "ms");
+  return elapsed;
 }
 
-fun01(5050);
+fun01(500).then(console.log);
 
 //reflection
 //1. As it is within the function it will carry out top down approach the first line will be actioned so the start and stop timer can be used this way.

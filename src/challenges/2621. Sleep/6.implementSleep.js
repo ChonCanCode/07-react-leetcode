@@ -18,18 +18,18 @@
 
 //    Practice chaining .then() and using async/await to get comfortable with both styles.
 
-async function sleep(millis) {
-  let answer = "success";
-  return await new Promise((resolve) =>
-    setTimeout(() => resolve(answer), millis)
-  );
-}
+// async function sleep(millis) {
+//   let answer = "success";
+//   return await new Promise((resolve) =>
+//     setTimeout(() => resolve(answer), millis)
+//   );
+// }
 
 // console.log(sleep(1000));
 
-//correction:
+// //correction:
 
-sleep(1000).then(console.log);
+// sleep(1000).then(console.log);
 
 //Lesson learned console.log wont wait it will print out promise which will defeat the purpose of function.
 
@@ -45,22 +45,33 @@ sleep(1000).then(console.log);
 // });
 
 // fuynct;
+let startTimer;
+let stopTimer;
+let elapsed;
 
-let myPromise = new Promise(function (myResolve, myReject) {
-  let success = true; // try changing this to false!
+async function sleep(millis) {
+  let answer = "Hello World!";
+  startTimer = Date.now();
+  await new Promise((resolve) => setTimeout(() => resolve(answer), millis));
+  stopTimer = Date.now();
+  elapsed = stopTimer - startTimer;
+  let secondsElapsed = Math.trunc(elapsed / 1000);
+  console.log(answer, "Took:", secondsElapsed, "seconds");
+}
 
-  if (success) {
-    myResolve("✅ The promise was resolved!");
-  } else {
-    myReject("❌ The promise was rejected!");
-  }
-});
+sleep(5000);
 
-myPromise.then(
-  function (value) {
-    console.log("Resolved:", value);
-  },
-  function (error) {
-    console.log("Rejected:", error);
-  }
-);
+// Professional rewrite:
+
+async function sleepPro(millis) {
+  const start = Date.now();
+
+  await new Promise((resolve) => setTimeout(resolve, millis));
+
+  const elapsed = Date.now() - start;
+  const seconds = Math.round(elapsed / 1000);
+
+  console.log(`Pro:Hello World! Took: ${seconds} seconds`);
+}
+
+sleepPro(5000);
